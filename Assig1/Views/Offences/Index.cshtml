@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Assig1.Models.Offence>
+﻿@model Assig1.ViewModels.ExpiationSearch
 
 @{
     ViewData["Title"] = "Index";
@@ -8,41 +8,53 @@
     <h2>Index</h2>
 </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<form asp-controller="Items" asp-action="Index" method="post" class="row mb-2">
+    <div class="col-4">
+        <input type="text" asp-for="SearchText" placeholder="Enter expiation info...">
+    </div>
+    <div class="col-3">
+        <select name="SpeedCodes" asp-for="SpeedCodes" class="form-control" asp-items="Model.CategoryName">
+            <option value="">All Speed Codes...</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <button class="btn btn-outline-primary"> Search </button>
+        <a class="btn btn-outline-info" asp-action="Create">Create New</a>
+    </div>
+</form>
+
 <table class="table">
-    <thead>
+@*     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.ItemList[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExpiationFee)
+                @Html.DisplayNameFor(model => model.ItemList[0].ExpiationFee)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AdultLevy)
+                @Html.DisplayNameFor(model => model.ItemList[0].AdultLevy)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CorporateFee)
+                @Html.DisplayNameFor(model => model.ItemList[0].CorporateFee)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalFee)
+                @Html.DisplayNameFor(model => model.ItemList[0].TotalFee)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DemeritPoints)
+                @Html.DisplayNameFor(model => model.ItemList[0].DemeritPoints)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SectionCode)
+                @Html.DisplayNameFor(model => model.ItemList[0].SectionCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Section)
+                @Html.DisplayNameFor(model => model.ItemList[0].Section)
             </th>
             <th></th>
         </tr>
-    </thead>
+    </thead> *@
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.ItemList)
         {
             <tr>
                 <td>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assig1.Data;
 using Assig1.Models;
+using Assig1.ViewModels;
 
 namespace Assig1.Controllers
 {
@@ -20,7 +21,7 @@ namespace Assig1.Controllers
         }
 
         // GET: Offences
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(ExpiationSearch es)
         {
             ViewBag.Title = "Offences";
             ViewBag.Active = "Offences";
@@ -30,7 +31,9 @@ namespace Assig1.Controllers
                 .Include(o => o.Section)
                 .OrderBy(o => o.OffenceCode);
 
-            return View(await expiationsContext.ToListAsync());
+            es.ItemList = expiationsContext.ToList();
+
+            return View(es);
         }
 
         // GET: Offences/Details/A002
