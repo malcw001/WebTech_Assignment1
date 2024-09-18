@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Assig1.Data;
 using Assig1.Models;
 using Assig1.ViewModels;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Assig1.Controllers
 {
@@ -26,10 +27,35 @@ namespace Assig1.Controllers
             ViewBag.Title = "Offences";
             ViewBag.Active = "Offences";
 
-            var expiationsContext = _context
-                .Offences
+            var expiationsContext = _context.Offences
                 .Include(o => o.Section)
+                .Include(o => o.Section.Category)
                 .OrderBy(o => o.OffenceCode);
+
+            #region Search
+            if (!string.IsNullOrWhiteSpace(es.SearchText))
+            {
+                expiationsContext = (IOrderedQueryable<Offence>)expiationsContext
+                    .Where(i => i.Section.Category.CategoryName.Contains(es.SearchText));
+            }
+            if (es.CategoryId != null)
+            {
+                expiationsContext = (IOrderedQueryable<Offence>)expiationsContext
+                    .Where(i => i.Section.Category.CategoryId == es.CategoryId);
+            }
+            #endregion
+
+            #region CategoriesQuery
+            var Categories = (from o in _context.ExpiationCategories
+                              orderby (o.CategoryName)
+                              select new
+                              {
+                                  o.CategoryId,
+                                  o.CategoryName
+                              }).ToList();
+
+            es.CategoryName = new SelectList(Categories, nameof(es.CategoryId), nameof(es.CategoryName), es.CategoryId);
+            #endregion
 
             es.ItemList = expiationsContext.ToList();
 
