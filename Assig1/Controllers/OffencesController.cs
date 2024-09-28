@@ -22,7 +22,7 @@ namespace Assig1.Controllers
         }
 
         // GET: Offences
-        public async Task<IActionResult> Index(ExpiationSearch es)
+        public async Task<IActionResult> Index(OffenceSearch es)
         {
             ViewBag.Title = "Offences";
             ViewBag.Active = "Offences";

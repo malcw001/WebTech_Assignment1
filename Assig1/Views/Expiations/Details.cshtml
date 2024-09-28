@@ -1,0 +1,132 @@
+﻿@model Assig1.Models.Expiation
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Expiation</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IssueDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IssueDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OffencePenaltyAmt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OffencePenaltyAmt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OffenceLevyAmt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OffenceLevyAmt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CorporateFeeAmt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CorporateFeeAmt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalFeeAmt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalFeeAmt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnforceWarningNoticeFeeAmt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EnforceWarningNoticeFeeAmt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BacContentExp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BacContentExp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VehicleSpeed)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VehicleSpeed)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationSpeedLimit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationSpeedLimit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OffenceCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OffenceCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DriverState)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DriverState)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RegState)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RegState)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LsaCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LsaCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CameraLocationId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CameraLocationId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CameraTypeCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CameraTypeCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhotoRejCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhotoRejCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StatusCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StatusCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WithdrawCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WithdrawCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TypeCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TypeCode)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

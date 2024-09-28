@@ -1,0 +1,143 @@
+﻿@model IEnumerable<Assig1.Models.Expiation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IssueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OffencePenaltyAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OffenceLevyAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorporateFeeAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalFeeAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnforceWarningNoticeFeeAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BacContentExp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleSpeed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationSpeedLimit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OffenceCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DriverState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LsaCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CameraLocationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CameraTypeCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoRejCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WithdrawCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IssueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OffencePenaltyAmt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OffenceLevyAmt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorporateFeeAmt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalFeeAmt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnforceWarningNoticeFeeAmt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BacContentExp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleSpeed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationSpeedLimit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OffenceCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LsaCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CameraLocationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CameraTypeCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotoRejCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WithdrawCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeCode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
