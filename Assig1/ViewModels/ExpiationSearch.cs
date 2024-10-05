@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 
 namespace Assig1.ViewModels
-
 {
     public class ExpiationSearch
     {
+        
     }
 }
