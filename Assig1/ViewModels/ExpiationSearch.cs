@@ -15,6 +15,6 @@ namespace Assig1.ViewModels
         public SelectList Suburb { get; set; }
 
         [Display(Name = "List of Expiations")]
-        public List<Expiation> ExpiationList { get; set; }
+        public List<ExpiationStat> ExpiationList { get; set; }
     }
 }

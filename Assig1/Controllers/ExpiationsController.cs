@@ -22,16 +22,27 @@ namespace Assig1.Controllers
 
         public async Task<IActionResult> Index(ExpiationSearch es)
         {
-            var expiationList = _context.Expiations
-                .Distinct()
-                .OrderBy(e => e)
-                .Where(e => e.CameraLocationId == 77);
+            var stats = _context.Expiations
+                .Join(_context.CameraCodes, e => e.CameraLocationId, cc => cc.LocationId,
+                (e, cc) => new { expiation = e, cameraCode = cc})
+                .GroupBy(ec => new { ec.expiation.CameraLocationId, ec.cameraCode.Suburb })
+                .Select(g => new ExpiationStat
+                {
+                    LocationId = g.Key.CameraLocationId,
+                    Suburb = g.Key.Suburb,
+                    TotalIncidents = g.Count(),
+                    MaxSpeed = g.Max(e => e.expiation.VehicleSpeed),
+                    AvgSpeed = g.Average(e => e.expiation.VehicleSpeed),
+                    TotalPenaltyFees = g.Sum(e => e.expiation.OffencePenaltyAmt),
+                    TotalFees = g.Sum(e => e.expiation.TotalFeeAmt)
+                });
 
-            es.ExpiationList = expiationList.ToList();
+            es.ExpiationList = stats.ToList();
 
             #region LocationName
             var Locations = (from cc in _context.CameraCodes
-                              orderby (cc.RoadName)
+                             join e in _context.Expiations on cc.LocationId equals e.CameraLocationId into expGroup
+                             orderby (cc.Suburb)
                               select new
                               {
                                   cc.LocationId,
