@@ -37,6 +37,13 @@ namespace Assig1.Controllers
                     TotalFees = g.Sum(e => e.expiation.TotalFeeAmt)
                 });
 
+            #region LocationQuery
+            if (es.LocationId != null) {
+                stats = stats
+                    .Where(i => i.LocationId == es.LocationId);
+            }
+            #endregion
+
             es.ExpiationList = stats.ToList();
 
             #region LocationName

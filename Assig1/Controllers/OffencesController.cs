@@ -30,18 +30,31 @@ namespace Assig1.Controllers
             var offencesContext = _context.Offences
                 .Include(o => o.Section)
                 .Include(o => o.Section.Category)
-                .OrderBy(o => o.OffenceCode);
+                .OrderBy(o => o.OffenceCode)
+                .Select(o => new OffenceDetail {
+                    OffenceCode = o.OffenceCode,
+                    Description = o.Description,
+                    ExpiationFee = o.ExpiationFee,
+                    CorporateFee = o.CorporateFee,
+                    TotalFee = o.TotalFee,
+                    DemeritPoints = o.DemeritPoints,
+                    SectionId = o.Section.SectionId,
+                    SectionName = o.Section.SectionName,
+                    SectionCode = o.Section.SectionCode,
+                    CategoryId = o.Section.Category.CategoryId,
+                    CategoryName = o.Section.Category.CategoryName
+                });
 
             #region Search
             if (!string.IsNullOrWhiteSpace(os.SearchText))
             {
-                offencesContext = (IOrderedQueryable<Offence>)offencesContext
-                    .Where(i => i.Section.Category.CategoryName.Contains(os.SearchText));
+                offencesContext = offencesContext
+                    .Where(i => i.SectionName.Contains(os.SearchText));
             }
             if (os.CategoryId != null)
             {
-                offencesContext = (IOrderedQueryable<Offence>)offencesContext
-                    .Where(i => i.Section.Category.CategoryId == os.CategoryId);
+                offencesContext = offencesContext
+                    .Where(i => i.CategoryId == os.CategoryId);
             }
             #endregion
 

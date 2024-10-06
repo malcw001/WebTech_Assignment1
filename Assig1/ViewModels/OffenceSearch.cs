@@ -18,7 +18,7 @@ namespace Assig1.ViewModels
         public SelectList CategoryName { get; set; }
 
         [Display(Name = "List of Offences")]
-        public List<Offence> ItemList { get; set; }
+        public List<OffenceDetail> ItemList { get; set; }
 
 
     }

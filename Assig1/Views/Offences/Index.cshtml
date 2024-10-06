@@ -10,9 +10,9 @@
 
 <form asp-controller="Offences" asp-action="Index" method="post" class="row mb-2">
     <div class="col-4">
-        <input type="text" asp-for="SearchText" placeholder="Enter expiation name...">
+        <input type="text" asp-for="SearchText" placeholder="Enter section name...">
     </div>
-    <div class="col-3">
+    <div class="col-5">
         <select name="CategoryId" asp-for="CategoryId" class="form-control" asp-items="Model.CategoryName">
             <option value="">All Categories...</option>
         </select>
@@ -47,7 +47,13 @@
                 @Html.DisplayNameFor(model => model.ItemList[0].SectionCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ItemList[0].Section)
+                @Html.DisplayNameFor(model => model.ItemList[0].SectionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemList[0].SectionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemList[0].CategoryName)
             </th>
             <th></th>
         </tr>
@@ -78,7 +84,13 @@
                     @Html.DisplayFor(modelItem => item.SectionCode)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Section.SectionId)
+                    @Html.DisplayFor(modelItem => item.SectionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SectionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.OffenceCode">Edit</a> |
