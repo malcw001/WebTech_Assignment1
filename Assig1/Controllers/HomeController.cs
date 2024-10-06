@@ -18,6 +18,9 @@ namespace Assig1.Controllers
             // This is the only ViewBag you can use to set the active Menu Item.
             ViewBag.Active = "Home"; 
             ViewBag.Title = "Home";
+
+
+
             return View();
         }
 

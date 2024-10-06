@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assig1.Data;
 using Assig1.Models;
+using Assig1.ViewModels;
 
 namespace Assig1.Controllers
 {
@@ -19,35 +20,49 @@ namespace Assig1.Controllers
             _context = context;
         }
 
-        //public IActionResult Index()
-        //{
-        //    var yearList = _context.CustomerOrders
-        //        .Select(co => co.OrderDate.Year)
-        //        .Distinct()
-        //        .OrderByDescending(co => co)
-        //        .ToList();
+        public async Task<IActionResult> Index(ExpiationSearch es)
+        {
+            var expiationList = _context.Expiations
+                .Distinct()
+                .OrderBy(e => e)
+                .Where(e => e.CameraLocationId == 77);
 
-        //    return View("AnnualSalesReport", new SelectList(yearList));
-        //}
+            es.ExpiationList = expiationList.ToList();
+
+            #region LocationName
+            var Locations = (from cc in _context.CameraCodes
+                              orderby (cc.RoadName)
+                              select new
+                              {
+                                  cc.LocationId,
+                                  cc.Suburb
+                              }).ToList();
+
+            es.Suburb = new SelectList(Locations, nameof(es.LocationId), nameof(es.Suburb), es.LocationId);
+            #endregion
+
+            return View(es);
+            //return View("ExpiationReport", new SelectList(offenceList));
+        }
 
         //[Produces("application/json")]
-        //public IActionResult AnnualSalesReportData(int Year)
+        //public async Task<IActionResult> ExpiationReportData(int Location)
         //{
-        //    if (Year > 0)
+        //    if (Location > 0)
         //    {
-        //        var orderSummary = _context.ItemsInOrders
-        //            .Where(iio => iio.OrderNumberNavigation.OrderDate.Year == Year)
-        //            .GroupBy(iio => new { iio.OrderNumberNavigation.OrderDate.Year, iio.OrderNumberNavigation.OrderDate.Month })
+        //        var expiationsSummary = _context.Expiations
+        //            .Where(e => e.CameraLocationId == Location)
+        //            .GroupBy(e => new { e.OffenceCode })
         //            .Select(group => new
         //            {
-        //                year = group.Key.Year,
-        //                monthNo = group.Key.Month,
+        //                time = group.Key.Year,
+        //                location = group.Key.Month,
         //                monthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(group.Key.Month),
-        //                totalItems = group.Sum(iio => iio.NumberOf),
-        //                totalSales = group.Sum(iio => iio.TotalItemCost)
+        //                totalItems = group.Sum(e => e.NumberOf),
+        //                totalSales = group.Sum(e => e.TotalItemCost)
         //            })
         //            .OrderBy(data => data.monthNo);
-        //        return Json(orderSummary);
+        //        return Json(expiationsSummary);
         //    }
         //    else
         //    {
@@ -55,15 +70,6 @@ namespace Assig1.Controllers
         //    }
         //}
 
-
-        // GET: Expiations
-        public async Task<IActionResult> Index()
-        {
-
-            return View(await _context.Expiations.ToListAsync());
-        }
-
-        // GET: Expiations/Details/5
         public async Task<IActionResult> Details(DateOnly? id)
         {
             if (id == null)

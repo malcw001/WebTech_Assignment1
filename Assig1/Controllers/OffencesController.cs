@@ -22,26 +22,26 @@ namespace Assig1.Controllers
         }
 
         // GET: Offences
-        public async Task<IActionResult> Index(OffenceSearch es)
+        public async Task<IActionResult> Index(OffenceSearch os)
         {
             ViewBag.Title = "Offences";
             ViewBag.Active = "Offences";
 
-            var expiationsContext = _context.Offences
+            var offencesContext = _context.Offences
                 .Include(o => o.Section)
                 .Include(o => o.Section.Category)
                 .OrderBy(o => o.OffenceCode);
 
             #region Search
-            if (!string.IsNullOrWhiteSpace(es.SearchText))
+            if (!string.IsNullOrWhiteSpace(os.SearchText))
             {
-                expiationsContext = (IOrderedQueryable<Offence>)expiationsContext
-                    .Where(i => i.Section.Category.CategoryName.Contains(es.SearchText));
+                offencesContext = (IOrderedQueryable<Offence>)offencesContext
+                    .Where(i => i.Section.Category.CategoryName.Contains(os.SearchText));
             }
-            if (es.CategoryId != null)
+            if (os.CategoryId != null)
             {
-                expiationsContext = (IOrderedQueryable<Offence>)expiationsContext
-                    .Where(i => i.Section.Category.CategoryId == es.CategoryId);
+                offencesContext = (IOrderedQueryable<Offence>)offencesContext
+                    .Where(i => i.Section.Category.CategoryId == os.CategoryId);
             }
             #endregion
 
@@ -54,12 +54,12 @@ namespace Assig1.Controllers
                                   o.CategoryName
                               }).ToList();
 
-            es.CategoryName = new SelectList(Categories, nameof(es.CategoryId), nameof(es.CategoryName), es.CategoryId);
+            os.CategoryName = new SelectList(Categories, nameof(os.CategoryId), nameof(os.CategoryName), os.CategoryId);
             #endregion
 
-            es.ItemList = expiationsContext.ToList();
+            os.ItemList = offencesContext.ToList();
 
-            return View(es);
+            return View(os);
         }
 
         // GET: Offences/Details/A002

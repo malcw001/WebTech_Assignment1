@@ -1,79 +1,90 @@
-﻿@model IEnumerable<Assig1.Models.Expiation>
+﻿@model Assig1.ViewModels.ExpiationSearch
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="text-dark bg-gradient bg-warning p-2 my-2 border rounded">
+    <h2>Index</h2>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<form asp-controller="Expiations" asp-action="Index" method="post" class="row mb-2">
+    <div class="col-3">
+        <select name="LocationId" asp-for="LocationId" class="form-control" asp-items="Model.Suburb">
+            <option value="">All Locations...</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <button class="btn btn-outline-primary"> Search </button>
+    </div>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IssueDate)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].IssueDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OffencePenaltyAmt)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].OffencePenaltyAmt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OffenceLevyAmt)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].OffenceLevyAmt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CorporateFeeAmt)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].CorporateFeeAmt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalFeeAmt)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].TotalFeeAmt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EnforceWarningNoticeFeeAmt)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].EnforceWarningNoticeFeeAmt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BacContentExp)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].BacContentExp)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VehicleSpeed)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].VehicleSpeed)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LocationSpeedLimit)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].LocationSpeedLimit)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OffenceCode)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].OffenceCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DriverState)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].DriverState)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RegState)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].RegState)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LsaCode)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].LsaCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CameraLocationId)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].CameraLocationId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CameraTypeCode)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].CameraTypeCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhotoRejCode)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].PhotoRejCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StatusCode)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].StatusCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WithdrawCode)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].WithdrawCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TypeCode)
+                @Html.DisplayNameFor(model => model.ExpiationList[0].TypeCode)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.ExpiationList) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.IssueDate)
